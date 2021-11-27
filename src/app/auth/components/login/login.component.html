@@ -1,0 +1,25 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="from-control-wrapper">
+    <mat-form-field>
+      <label for="username">Username</label>
+      <input type="text" matInput formControlName="username"/>
+      <!-- <mat-error *ngIf="loginFormControl['username'].invalid">{{loginFormControl | logger}}</mat-error> -->
+      <mat-error *ngIf="(loginForm.get('username')?.touched || loginForm.hasError('invalidUsername', ['username']))">Invalid username</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="from-control-wrapper">
+    <mat-form-field>
+      <label for="password">Password</label>
+      <input type="password" matInput formControlName="password"/>
+      <!-- <mat-error *ngIf="loginFormControl['password'].invalid">{{loginFormControl | logger}}</mat-error> -->
+      <mat-error *ngIf="(loginForm.get('password')?.touched || loginForm.hasError('invalidPassword', ['password']))">Invalid password</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="from-control-wrapper">
+    <button type="submit" mat-flat-button [disabled]="loginForm.invalid">Login</button>
+  </div>
+</form>
+
+<div>
+  <p>{{githubUser | jsonStringify}}</p>
+</div>
